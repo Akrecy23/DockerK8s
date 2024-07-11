@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      initContainers:
+      - name: create-log-directory
+        image: busybox
+        command: ["sh", "-c", "mkdir -p /django-app/logs && touch /django-app/logs/app.log"]
+        volumeMounts:
+        - name: data-volume
+          mountPath: /django-app/logs
+      containers:
+      - name: deployment-1
+        image: akrecy/django-app
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: data-volume
+          mountPath: /django-app/logs
+      volumes:
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: local-pvc

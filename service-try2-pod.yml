@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: service-try2-pod
+  labels:
+    app: myapp  # Match the labels with your deployment selector
+spec:
+  containers:
+  - name: test-container
+    image: akrecy/django-app:latest  # Replace with an appropriate image that can access the service
+    imagePullPolicy: Always
+    ports:
+    - containerPort: 8000
+

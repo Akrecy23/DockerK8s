@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turn-Based Game</title>
+</head>
+<body>
+    <h1>Turn-Based Game</h1>
+    <p>User Health: {{ game.user_health }}</p>
+    <p>Enemy Health: {{ game.enemy_health }}</p>
+
+    {% if game.game_over %}
+        <h2>Game Over! Winner: {{ game.winner }}</h2>
+        <form method="post" action="{% url 'reset' %}">
+            {% csrf_token %}
+            <button type="submit">Play Again</button>
+        </form>
+    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" name="action" value="attack">Attack</button>
+            <button type="submit" name="action" value="defense">Defense</button>
+            <button type="submit" name="action" value="recovery">Recovery</button>
+        </form>
+    {% endif %}
+</body>
+</html>

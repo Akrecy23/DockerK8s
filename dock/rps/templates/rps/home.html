@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <h1>Rock Paper Scissors</h1>
+    <form action="{% url 'play' %}" method="post">
+        {% csrf_token %}
+        <label>
+            <input type="radio" name="choice" value="rock" required> Rock
+        </label>
+        <label>
+            <input type="radio" name="choice" value="paper" required> Paper
+        </label>
+        <label>
+            <input type="radio" name="choice" value="scissors" required> Scissors
+        </label>
+        <button type="submit">Play</button>
+    </form>
+</body>
+</html>
