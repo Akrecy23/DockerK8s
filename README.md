@@ -104,13 +104,17 @@
 
 
 ### 6.2 Create a test pod to access service to validate
-1. Create YAML file for test pod (servicepod.yml)
-2. Apply by running "kubectl apply -f servicepod.yml"
-3. Access the test pod by running "kubectl exec -it service-pod -- /bin/bash", where service-pod is the name defined in servicepod.yml
-4. Test the service by running "curl http://my-flask-app:8000"
-5. After testing, cleanup by deleting the test pod. Run "kubectl delete pod test-pod"
-
+Method 1 :
 1. Expose the deployment by running "kubectl expose deployment deployment-1 –-type=ClusterIP –-port=8000
 2. Make a service-pod.yml file and apply it by running "kubectl apply -f service-pod.yml"
 3. Port Forward by running "kubectl port-forward service-pod-1 8000:8000", where service-pod-1 is the pod name defined in service-pod.yml
 4. Test connectivity using curl by running "curl http://localhost:8000/rps/"
+
+Method 2 :
+1. Create YAML file for service (service-try2.yml) and apply it by running "kubectl apply -f service-try2.yml"
+2. Create YAML file for test-pod (service-try2-pod.yml) and apply it by running "kubectl apply -f service-try2-pod.yml"
+3. Port Forward by running "kubectl port-forward service-pod-1 8000:8000", where service-pod-1 is the pod name defined in service-pod.yml
+4. Test connectivity using curl by running "curl http://localhost:8000/rps/"
+
+# Remarks :
+Refer to google doc in submission folder : DCPE2A02_GRP2 > Docker/K8s Mini Project for images/proofs and github + dockerhub link
