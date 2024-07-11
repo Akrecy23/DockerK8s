@@ -58,7 +58,7 @@
 ### 4.2 Configure 3 replicas
 1. Edit the YAML file to specify 3 replicas
 
-### 4.3
+### 4.3 Use the docker image pushed
 1. Edit the YAML file to specify image (image: akrecy/django-app)
 
 ### 4.4 Applying the deployment YAML file to Kubernetes cluster
